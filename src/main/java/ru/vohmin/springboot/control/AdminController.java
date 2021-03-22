@@ -1,6 +1,5 @@
 package ru.vohmin.springboot.control;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -50,13 +49,13 @@ public class AdminController {
     }
 
     @PostMapping("/del_user/{id}")
-    public String delUser(@PathVariable @Validated @NotNull Long id) {
+    public String delUser(@PathVariable @Validated Long id) {
         service.deleteUser(id);
         return "redirect:/admin/users";
     }
 
     @PostMapping("/update/{id}")
-    public String redirectToMergePage(@PathVariable @Validated @NotNull Long id, ModelMap map) {
+    public String redirectToMergePage(@PathVariable @Validated Long id, ModelMap map) {
         map.addAttribute("user", service.findUserById(id));
         map.addAttribute("allRoles", roleRepository.findAll());
         return "update";
