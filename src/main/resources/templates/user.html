@@ -42,9 +42,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="" aria-current="page">About user</a>
                     </li>
-                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-                        <a class="nav-link" href="/admin/add_page">New User</a>
-                    </li>
                 </ul>
             </nav>
             <div class="card">
@@ -60,8 +57,6 @@
                         <th scope="col">Age</th>
                         <th scope="col">Email</th>
                         <th scope="col">ROLE</th>
-                        <th sec:authorize="hasAuthority('ROLE_ADMIN')" scope="col">Edit</th>
-                        <th sec:authorize="hasAuthority('ROLE_ADMIN')" scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,18 +70,6 @@
                             <th:block th:each="role : ${authUser.roles}">
                                 <span th:text="${role.name}"></span>
                             </th:block>
-                        </td>
-                        <td sec:authorize="hasAuthority('ROLE_ADMIN')">
-                            <form method="POST" th:action="@{'/admin/update/{id}'(id=${authUser.id})}" class="col-12">
-                                <input type="hidden" th:value="${authUser.id}">
-                                <button type="submit" class="btn btn-info">Edit</button>
-                            </form>
-                        </td>
-                        <td sec:authorize="hasAuthority('ROLE_ADMIN')">
-                            <form method="POST" th:action="@{'/admin/del_user/{id}'(id=${authUser.id})}" class="col-12">
-                                <input type="hidden" th:value="${authUser.id}">
-                                <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-                            </form>
                         </td>
                     </tr>
                     </tbody>
