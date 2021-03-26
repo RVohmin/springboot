@@ -1,14 +1,12 @@
 function show() {
-    fetch("http://localhost:8080/rest/users").then(
+    fetch("http://localhost:8080/rest/user").then(
         res => {
             res.json().then(
                 data => {
                     if (data.length > 0) {
                         var temp = "";
-
                         data.forEach((user) => {
                             temp += "<tr>";
-
                             temp += "<td class=\"uid\">" + user.id + "</td>";
                             temp += "<td class=\"uname\">" + user.username + "</td>";
                             temp += "<td class=\"ulast\">" + user.lastName + "</td>";
@@ -34,7 +32,7 @@ function show() {
     )
 }
 
-// $(document).ready(function () {
+$(document).ready(function () {
     show();
-    // setInterval('show()', 1000);
-// });
+    setInterval('show()', 1000);
+});

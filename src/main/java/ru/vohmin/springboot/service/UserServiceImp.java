@@ -50,11 +50,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public boolean saveUser(User user, String[] rolesFromHtml) {
-        Set<Role> roleSet = user.getRoles();
-        for (String roleId : rolesFromHtml) {
-            roleSet.add(roleRepository.findById(Long.valueOf(roleId)).get());
-        }
+    public boolean saveUser(User user) {
         userRepository.save(user);
         return true;
     }

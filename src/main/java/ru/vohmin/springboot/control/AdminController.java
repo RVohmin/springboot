@@ -14,6 +14,7 @@ import ru.vohmin.springboot.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -38,18 +39,14 @@ public class AdminController {
         return "users";
     }
 
-    @GetMapping("/add_page")
-    public String redirectToAddUserForm(ModelMap map, Principal principal) {
-        map.addAttribute("authUser", getAuthorizedUser(principal));
-        map.addAttribute("user", new User());
-        map.addAttribute("allRoles", roleRepository.findAll());
-        return "add_user";
-    }
-
     @PostMapping("/add_user")
     public String addUser(@ModelAttribute User user, @RequestParam("roles") String[] rolesFromHtml) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        service.saveUser(user, rolesFromHtml);
+        Set<Role> roleSet = user.getRoles();
+        for (String roleId : rolesFromHtml) {
+            roleSet.add(roleRepository.findById(Long.valueOf(roleId)).get());
+        }
+        service.saveUser(user);
         return "redirect:/admin/users";
     }
 
@@ -62,7 +59,6 @@ public class AdminController {
     @PostMapping("/update/{id}")
     public String redirectToMergePage(@PathVariable @Validated Long id, ModelMap map) {
         map.addAttribute("user", service.findUserById(id));
-//        map.addAttribute("allRoles", roleRepository.findAll());
         return "redirect:/admin/users";
     }
 
