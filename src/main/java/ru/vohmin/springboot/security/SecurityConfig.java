@@ -32,11 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/login", "/**")
+                .antMatchers("/login")
                 .permitAll()
-                .antMatchers("/admin/**", "/rest/**").access("hasAnyRole('ROLE_ADMIN')") // разрешаем входить на /user пользователям с ролью User
-                .antMatchers("/user/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
-                .and().formLogin()  // Spring сам подставит свою логин форму
+                .antMatchers("/admin/**", "/rest/**").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+                .and()
+                .formLogin()  // Spring сам подставит свою логин форму
                 .loginProcessingUrl("/login")
                 .permitAll()
                 .successHandler(successUserHandler)
