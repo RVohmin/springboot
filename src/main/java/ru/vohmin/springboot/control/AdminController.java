@@ -62,7 +62,7 @@ public class AdminController {
     @PostMapping("/update/{id}")
     public String redirectToMergePage(@PathVariable @Validated Long id, ModelMap map) {
         map.addAttribute("user", service.findUserById(id));
-        map.addAttribute("allRoles", roleRepository.findAll());
+//        map.addAttribute("allRoles", roleRepository.findAll());
         return "redirect:/admin/users";
     }
 

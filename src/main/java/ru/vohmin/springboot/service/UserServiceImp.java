@@ -15,6 +15,7 @@ import ru.vohmin.springboot.repository.RoleRepository;
 import ru.vohmin.springboot.repository.UserRepository;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -84,5 +85,15 @@ public class UserServiceImp implements UserService {
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Set<Role> getRolesFromArray(String[] array) {
+        Set<Role> roles = new HashSet<>();
+        for (String roleId : array) {
+            roles.add(roleRepository.findById(Long.valueOf(roleId)).get());
+        }
+        return roles;
     }
 }
