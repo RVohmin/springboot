@@ -1,6 +1,4 @@
 function newuser() {
-    // $("#utable").removeClass('active');
-    // $("#newusertable").addClass('active');
     fetch("http://localhost:8080/rest/users").then(
         res => {
             res.json().then(

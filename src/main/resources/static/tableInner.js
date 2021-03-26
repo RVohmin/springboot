@@ -1,7 +1,4 @@
 function show() {
-    // $("#newusertable").removeClass("active");
-    // $("#utable").addClass("active");
-    // $(document).ready(function () {
     fetch("http://localhost:8080/rest/users").then(
         res => {
             res.json().then(
