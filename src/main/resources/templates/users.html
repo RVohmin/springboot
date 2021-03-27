@@ -16,7 +16,7 @@
         }
 
         label, select {
-            margin: 0;
+            margin: 0 auto;
         }
 
         select {
@@ -25,6 +25,10 @@
 
         input {
             width: 100%;
+        }
+
+        placeholder, input, .form_div {
+            text-align: center;
         }
     </style>
 </head>
@@ -95,7 +99,7 @@
                         <h2>Add new user</h2>
                         <form id="formNewUser" class="row"
                               style="display: flex; flex-direction: column; justify-content: center;
-                            align-items: center; font-size: 16px; align-self: center; width: 30%";>
+                            align-items: center; font-size: 16px; align-self: center; width: 30%" ;>
                             <div class="item">
                                 <label for="newUserName">First Name</label>
                                 <input type="text" name="username" id="newUserName" placeholder="Vasya">
@@ -135,53 +139,56 @@
         </div>
     </div>
 </div>
-<div id="editUserModal" class="modal" tabindex="-1">
+<div id="editUserModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="form" accept-charset="UTF-8" class="">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input6">Id</label>
                         <input id="Input6" type="text" class="form-control userId" name="id" value=""
                                readonly>
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input7">First Name</label>
                         <input type="text" class="form-control userName" name="username" id="Input7"
                                value="">
                     </div>
-                    <div style="margin: 0;" class=" mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input8">Last Name</label>
                         <input type="text" class="form-control userLastName" name="lastName" id="Input8"
                                value="">
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input9">Age</label>
                         <input type="number" class="form-control userAge" name="age" id="Input9"
                                value="">
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input10">Email address</label>
                         <input type="email" class="form-control userEmail" name="email" id="Input10"
                                value="">
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input11">password</label>
                         <input type="password" class="form-control upass" name="password" id="Input11"
                                value="">
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
+                        <label for="select">Roles</label>
                         <select id="select" name="roles" multiple size="2" required class="form-control">
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="delSubmit" class="btn btn-primary" onclick="updateUser()">Edit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="delSubmit" onclick="updateUser()">Edit</button>
                 </div>
             </form>
         </div>
@@ -190,44 +197,47 @@
 <div id="delUserModal" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="formdel" accept-charset="UTF-8" class="row g-3">
+            <form id="formdel" accept-charset="UTF-8" class="">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10060;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input0">Id</label>
                         <input id="Input0" type="text" class="form-control userId" name="id" value=""
                                readonly>
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input1">First Name</label>
                         <input type="text" class="form-control userName" name="name" id="Input1"
                                value="" readonly>
                     </div>
-                    <div style="margin: 0;" class=" mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input2">Last Name</label>
                         <input type="text" class="form-control userLastName" name="lastName" id="Input2"
                                value="" readonly>
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input3">Age</label>
                         <input type="number" class="form-control userAge" name="age" id="Input3"
                                value="" readonly>
                     </div>
-                    <div style="margin: 0;" class="mb-3">
+                    <div style="margin: 0;" class="form_div">
                         <label for="Input4">Email address</label>
                         <input type="email" class="form-control userEmail" name="email" id="Input4"
                                value="" readonly>
                     </div>
-                    <div style="margin: 0;" class="mb-3">
-                        <select id="selected" name="roles" multiple size="2" required class="form-control">
+                    <div style="margin: 0;" class="form_div">
+                        <label for="selected">Roles</label>
+                        <select id="selected" name="roles" multiple size="2" required class="form-control" disabled>
                         </select>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer form_div">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button id="editSubmit" class="btn btn-danger" onclick="deleteUser()">Delete</button>
                 </div>
             </form>
@@ -235,11 +245,6 @@
     </div>
 </div>
 
-
-
-<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -252,10 +257,6 @@
 <script type="text/javascript" th:src="@{/tableInner.js}"></script>
 
 <script type="text/javascript" th:inline="javascript">
-    $('#mytab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
 
     function edit(obj) {
         var id = obj.id;
@@ -336,6 +337,8 @@
     function delshow(obj) {
         var idAttr = obj.id;
         var id = idAttr.slice(4);
+        select = $('#selected'); //
+        $('#selected option').remove(); //
         fetch("http://localhost:8080/rest/user/" + id).then(
             res => {
                 res.json().then(
@@ -345,21 +348,10 @@
                         $(".userLastName").val(user.lastName);
                         $(".userAge").val(user.age);
                         $(".userEmail").val(user.email);
-                    }
-                )
-            }
-        );
-        select = $('#selected');
-        $('#selected option').remove();
-        fetch("http://localhost:8080/rest/roles").then(
-            res => {
-                res.json().then(
-                    roles => {
+                        var roles = user.roles;
                         for (var i = 0; i < roles.length; i++) {
-                            if (select.length !== roles.length) {
-                                var o = new Option(roles[i].name, roles[i].id);
-                                select.append(o);
-                            }
+                            var o = new Option(roles[i].name, roles[i].id);
+                            select.append(o);
                         }
                     }
                 )
@@ -377,7 +369,7 @@
         $('#delUserModal').modal('hide');
     }
 
-    $('#formNewUser').submit(function() {
+    $('#formNewUser').submit(function () {
         var user = [[${user}]];
         let formData = new FormData(document.getElementById("formNewUser"));
         for (let key of formData.keys()) {
